@@ -3,6 +3,7 @@
 <html lang="ch">
 <link type="text/css" rel="stylesheet" id="dark-mode-custom-link">
 <link type="text/css" rel="stylesheet" id="dark-mode-general-link">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style lang="en" type="text/css" id="dark-mode-custom-style"></style>
 <style lang="en" type="text/css" id="dark-mode-native-style"></style>
 <style lang="en" type="text/css" id="dark-mode-native-sheet"></style>
@@ -120,7 +121,7 @@
 		<div id="topBut" class="col-xs-2 col-sm-1 bordered-right bordered-gray text-center"
 			style="height: 50px;padding: 3px 10px;"><a
 				class="btn btn-link btn-block  font-bold fontsize-3x no-padding text-gray " style="line-height: 1;"
-				onclick="backPage($(this));"><i class="fa fa-angle-left"></i></a></div>
+				onclick="backPage($(this));"></a></div>
 		<div class="col-xs-10 col-sm-11 no-padding">
 			<div class="fontsize-lg text-center"
 				style="overflow: hidden;min-height: 50px;width: 100%; line-height: 120%;">
@@ -241,9 +242,9 @@
 									下載個人資料申請:</div>
 								<div style="display: flex;">
 									<div style="flex: 1;font-size: 95%;display: inline-block;border: 2px solid #7F7F7F;color: #000;margin:0 10px;padding:6px 12px;border-radius: 5px;font-weight: bold;"
-										onclick="download(0,&#39;GD&#39;)">粵康碼</div>
+										onclick="">粵康碼</div>
 									<div style="flex: 1;font-size: 85%;display: inline-block;border: 2px solid #7F7F7F;color: #000;margin:0 10px;padding:6px 12px;border-radius: 5px;font-weight: bold;"
-										onclick="download(0,&#39;HK&#39;)">香港健康申報表</div>
+										onclick="">香港健康申報表</div>
 								</div>
 								<div class="clearfix"></div>
 								<div class="pos-bottom daily-footer-bgcolor " style="background-color: #1dc156;"></div>
@@ -252,19 +253,17 @@
 						</div>
 					</div>
 				</div>
+			</center>
 		</div>
-	</div>
-	</center>
-	</div>
-	<div class="" style="padding-top:30px;">
-		<div class="hidden-xs col-sm-3"></div>
-		<div class="col-xs-12 col-sm-6 text-left font-bold ">
+		<div class="" style="padding-top:30px;">
+			<div class="hidden-xs col-sm-3"></div>
+			<div class="col-xs-12 col-sm-6 text-left font-bold ">
 
-		</div>
-		<div class="hidden-xs col-sm-3"></div>
+			</div>
+			<div class="hidden-xs col-sm-3"></div>
+			<div class="clearfix"></div>
+		</div><br><br><br><br>
 		<div class="clearfix"></div>
-	</div><br><br><br><br>
-	<div class="clearfix"></div>
 
 	</div>
 	<!-- 弹窗 -->
@@ -273,88 +272,81 @@
 		<div class="modal-content">
 			<div id="myModalText" style="word-wrap: break-word;word-break:break-all;overflow: hidden;"></div>
 			<br>
-			<div><button id="close" class="btn btn-default btn-block"
-					onclick="$(&#39;#myModal&#39;).css(&#39;display&#39;,&#39;none&#39;);">關閉</button></div>
 		</div>
-	</div>
 
-	<div id="nucleicAcidResExpDatePrompt" class="modal">
-		<!-- 弹窗内容 -->
-		<div class="modal-content">
-			<!-- <p> -->
-			<div id="nucleicAcidResExpDatePromptText" style="font-size: 150%;"></div>
-			<br>
-			<div style="text-align:center;">
-				<button id="close" class="btn btn-default" style="width:100px;"
-					onclick="$(&#39;#nucleicAcidResExpDatePrompt&#39;).css(&#39;display&#39;,&#39;none&#39;);">關閉</button>
+		<div id="nucleicAcidResExpDatePrompt" class="modal">
+			<!-- 弹窗内容 -->
+			<div class="modal-content">
+				<!-- <p> -->
+				<div id="nucleicAcidResExpDatePromptText" style="font-size: 150%;"></div>
+				<br>
+				<!-- <p> -->
 			</div>
-			<!-- <p> -->
 		</div>
-	</div>
 
 
-	<script type="text/javascript">
-		function toDetails(elm) {
-			var temp = JSON.parse(sessionStorage.img);
-			let id = String(elm.prop('id')).replace('vaccinated', '');
-			temp = temp.personList[id];
-			sessionStorage.setItem('vaccinatedDetails', JSON.stringify(temp));
-			location.assign('./ch12.html?time=' + new Date().getTime());
-		}
+		<script type="text/javascript">
+			function toDetails(elm) {
+				var temp = JSON.parse(sessionStorage.img);
+				let id = String(elm.prop('id')).replace('vaccinated', '');
+				temp = temp.personList[id];
+				sessionStorage.setItem('vaccinatedDetails', JSON.stringify(temp));
+				location.assign('./ch12.html?time=' + new Date().getTime());
+			}
 
-	</script>
+		</script>
 
-	<script>
-		let place_str = window.prompt("場所", "");
-		document.querySelector("#place").innerHTML = place_str;
-		let current = new Date();
-		console.log(current.getHours());
-		var rat_hour = current.getHours() - 2;
-		if (rat_hour < 0) {
-			document.querySelector("#rat-date").innerHTML = current.getFullYear() + "-" + (current.getMonth() + 1 < 10 ? "0" : "") + (current.getMonth() + 1) + "-" + (current.getDate() < 10 ? "0" : "") + current.getDate();
-			document.querySelector("#rat-time").innerHTML = " " + "00:10";
-		}
-		else {
-			document.querySelector("#rat-date").innerHTML = current.getFullYear() + "-" + (current.getMonth() + 1 < 10 ? "0" : "") + (current.getMonth() + 1) + "-" + (current.getDate() < 10 ? "0" : "") + current.getDate();
-			document.querySelector("#rat-time").innerHTML = " " + ((current.getHours() - 2) < 10 ? "0" : "") + (current.getHours() - 2) + ":20";
-		}
+		<script>
+			let place_str = window.prompt("場所", "");
+			document.querySelector("#place").innerHTML = place_str;
+			let current = new Date();
+			console.log(current.getHours());
+			var rat_hour = current.getHours() - 2;
+			if (rat_hour < 0) {
+				document.querySelector("#rat-date").innerHTML = current.getFullYear() + "-" + (current.getMonth() + 1 < 10 ? "0" : "") + (current.getMonth() + 1) + "-" + (current.getDate() < 10 ? "0" : "") + current.getDate();
+				document.querySelector("#rat-time").innerHTML = " " + "00:10";
+			}
+			else {
+				document.querySelector("#rat-date").innerHTML = current.getFullYear() + "-" + (current.getMonth() + 1 < 10 ? "0" : "") + (current.getMonth() + 1) + "-" + (current.getDate() < 10 ? "0" : "") + current.getDate();
+				document.querySelector("#rat-time").innerHTML = " " + ((current.getHours() - 2) < 10 ? "0" : "") + (current.getHours() - 2) + ":20";
+			}
 
-		document.querySelector("#register-time").innerHTML = (current.getHours() < 10 ? "0" : "") + current.getHours() + ":" + (current.getMinutes() < 10 ? "0" : "") + current.getMinutes();
-		document.querySelector(".expiry-date").innerHTML = current.getFullYear() + "/" + (current.getMonth() + 1 < 10 ? "0" : "") + (current.getMonth() + 1) + "/" + (current.getDate() < 10 ? "0" : "") + current.getDate();
-		setInterval(() => {
-			let c = new Date();
-			document.querySelector("#times0").innerHTML = c.getFullYear() + "-" + (c.getMonth() + 1 < 10 ? "0" : "") + (c.getMonth() + 1) + "-" + (c.getDate() < 10 ? "0" : "") + c.getDate() + " " + c.getHours() + ":" + (c.getMinutes() < 10 ? "0" : "") + c.getMinutes() + ":" + (c.getSeconds() < 10 ? "0" : "") + c.getSeconds();
-		}, 1000);
+			document.querySelector("#register-time").innerHTML = (current.getHours() < 10 ? "0" : "") + current.getHours() + ":" + (current.getMinutes() < 10 ? "0" : "") + current.getMinutes();
+			document.querySelector(".expiry-date").innerHTML = current.getFullYear() + "/" + (current.getMonth() + 1 < 10 ? "0" : "") + (current.getMonth() + 1) + "/" + (current.getDate() < 10 ? "0" : "") + current.getDate();
+			setInterval(() => {
+				let c = new Date();
+				document.querySelector("#times0").innerHTML = c.getFullYear() + "-" + (c.getMonth() + 1 < 10 ? "0" : "") + (c.getMonth() + 1) + "-" + (c.getDate() < 10 ? "0" : "") + c.getDate() + " " + c.getHours() + ":" + (c.getMinutes() < 10 ? "0" : "") + c.getMinutes() + ":" + (c.getSeconds() < 10 ? "0" : "") + c.getSeconds();
+			}, 1000);
 
-		var nat_date = current.getDate() - 1;
-		if (nat_date == 0) {
-			document.querySelector("#nat-date").innerHTML = current.getFullYear() + "-" + (current.getMonth() < 10 ? "0" : "") + current.getMonth() + "-" + "30";
-		}
-		else {
-			document.querySelector("#nat-date").innerHTML = current.getFullYear() + "-" + (current.getMonth() + 1 < 10 ? "0" : "") + (current.getMonth() + 1) + "-" + ((current.getDate() - 1) < 10 ? "0" : "") + (current.getDate() - 1);
-		}
+			var nat_date = current.getDate() - 1;
+			if (nat_date == 0) {
+				document.querySelector("#nat-date").innerHTML = current.getFullYear() + "-" + (current.getMonth() < 10 ? "0" : "") + current.getMonth() + "-" + "30";
+			}
+			else {
+				document.querySelector("#nat-date").innerHTML = current.getFullYear() + "-" + (current.getMonth() + 1 < 10 ? "0" : "") + (current.getMonth() + 1) + "-" + ((current.getDate() - 1) < 10 ? "0" : "") + (current.getDate() - 1);
+			}
 
-		if (nat_date == 0) {
-			document.querySelector("#nat-redate").innerHTML = current.getFullYear() + "-" + (current.getMonth() < 10 ? "0" : "") + current.getMonth() + "-" + "30";
-		}
-		else {
-			document.querySelector("#nat-redate").innerHTML = current.getFullYear() + "-" + (current.getMonth() + 1 < 10 ? "0" : "") + (current.getMonth() + 1) + "-" + ((current.getDate() - 1) < 10 ? "0" : "") + (current.getDate() - 1);
-		}
-	</script>
+			if (nat_date == 0) {
+				document.querySelector("#nat-redate").innerHTML = current.getFullYear() + "-" + (current.getMonth() < 10 ? "0" : "") + current.getMonth() + "-" + "30";
+			}
+			else {
+				document.querySelector("#nat-redate").innerHTML = current.getFullYear() + "-" + (current.getMonth() + 1 < 10 ? "0" : "") + (current.getMonth() + 1) + "-" + ((current.getDate() - 1) < 10 ? "0" : "") + (current.getDate() - 1);
+			}
+		</script>
 
-	<grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
-	<style type="text/css">
-		@font-face {
-			font-family: "EmojiSymbols";
-			src: url('../fonts/EmojiSymbols-Regular.woff') format("woff");
-		}
+		<grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+		<style type="text/css">
+			@font-face {
+				font-family: "EmojiSymbols";
+				src: url('../fonts/EmojiSymbols-Regular.woff') format("woff");
+			}
 
-		.char {
-			font-family: 'EmojiSymbols';
-			font-size: 160%;
-			color: red;
-		}
-	</style>
+			.char {
+				font-family: 'EmojiSymbols';
+				font-size: 160%;
+				color: red;
+			}
+		</style>
 </body>
 
 </html>
